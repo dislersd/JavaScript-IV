@@ -36,7 +36,7 @@ class Student extends Person {
   }
 
   listsSubjects() {
-    console.log(`${this.favSubjects}`);
+    console.log(`${this.favSubjects[0]} ${this.favSubjects[1]} ${this.favSubjects[2]}`);
   }
 
   PRAssignment(subject) {
@@ -65,5 +65,38 @@ class ProjectManager extends Instructor {
 }
 
 
+const Josh = new Instructor({
+  name: 'Josh',
+  age: '35',
+  location: 'Lambdaville',
+  gender: 'M'
+})
 
+Josh.speak();
+
+const Dylan = new Student({
+  name: 'Dylan',
+  age: '27',
+  location: 'Seattle',
+  gender: 'M',
+  previousBackground: 'Sales',
+  className: 'web17',
+  favSubjects: ['JS', 'HTML', 'CSS']
+})
+
+Dylan.listsSubjects();
+
+const Michael = new ProjectManager({
+  name: 'Michael',
+  age: '21',
+  location: 'New Jersey',
+  gender: 'M',
+  className: 'web17',
+  favSubjects: ['JS', 'HTML', 'React'],
+  gradClassName: 'web15',
+  favInstructor: 'Big Knell',
+})
+
+Michael.debugsCode(Dylan, 'JS');
+Michael.standUp('mygroup');
 
