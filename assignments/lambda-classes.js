@@ -26,13 +26,23 @@ class Instructor extends Person {
   grade(student, subject) {
     console.log(`${student.name} recieves a perfect score on ${subject}`);
   }
+
+  gradeHammer(student) {
+    if (student.grade) {
+    let random = (Math.floor((Math.random()*10)+1));
+    let plusOrMinus = Math.round(Math.random()) * 2 - 1;
+    student.grade += random * plusOrMinus;
+    }
+  }
 }
+
 class Student extends Person {
   constructor(sAttributes) {
     super(sAttributes);
     this.previousBackground = sAttributes.previousBackground;
     this.className = sAttributes.className;
     this.favSubjects = sAttributes.favSubjects;
+    this.grade =sAttributes.grade;
   }
 
   listsSubjects() {
@@ -45,6 +55,15 @@ class Student extends Person {
 
   sprintChallenge(subject) {
     console.log(`${this.name} has begun sprint challenge on ${subject}`);
+  }
+
+  graduate() {
+    if (this.grade < 70) {
+      console.log(this.grade);
+      return Josh.gradeHammer(this);
+    } else if (this.grade > 70) {
+      console.log(`YOU GRADUATE`);
+    }
   }
 }
 
@@ -81,10 +100,12 @@ const Dylan = new Student({
   gender: 'M',
   previousBackground: 'Sales',
   className: 'web17',
-  favSubjects: ['JS', 'HTML', 'CSS']
+  favSubjects: ['JS', 'HTML', 'CSS'],
+  grade: 30
 })
 
 Dylan.listsSubjects();
+console.log(Dylan.grade); 
 
 const Michael = new ProjectManager({
   name: 'Michael',
@@ -93,10 +114,16 @@ const Michael = new ProjectManager({
   gender: 'M',
   className: 'web17',
   favSubjects: ['JS', 'HTML', 'React'],
-  gradClassName: 'web15',
+  gradClassName: 'web14',
   favInstructor: 'Big Knell',
 })
 
 Michael.debugsCode(Dylan, 'JS');
 Michael.standUp('mygroup');
+
+for (let i = 0; i < 100; i++) {
+  Dylan.graduate();
+}
+
+
 
